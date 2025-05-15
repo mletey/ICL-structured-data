@@ -1,0 +1,80 @@
+mkdir: cannot create directory ‘runs/memory_test_d40_onelayer’: File exists
+2025-05-15 01:35:22.754942: W external/tsl/tsl/framework/bfc_allocator.cc:485] Allocator (GPU_0_bfc) ran out of memory trying to allocate 38.16GiB (rounded to 40972801024)requested by op 
+2025-05-15 01:35:22.755416: W external/tsl/tsl/framework/bfc_allocator.cc:497] *____________*******________________________________________________________________________________
+2025-05-15 01:35:22.755459: E external/xla/xla/pjrt/pjrt_stream_executor_client.cc:2732] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 40972801000 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:   48.83MiB
+              constant allocation:         0B
+        maybe_live_out allocation:   38.16GiB
+     preallocated temp allocation:         0B
+                 total allocation:   38.21GiB
+              total fragmentation:         0B (0.00%)
+Peak buffers:
+	Buffer 1:
+		Size: 38.16GiB
+		Operator: op_name="jit(fn)/jit(main)/ge" source_file="/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../model/transformer.py" source_line=286
+		XLA Label: fusion
+		Shape: pred[1000,6401,6401]
+		==========================
+
+	Buffer 2:
+		Size: 24.42MiB
+		Entry Parameter Subshape: s32[1000,6401,1]
+		==========================
+
+	Buffer 3:
+		Size: 24.42MiB
+		Entry Parameter Subshape: s32[1000,1,6401]
+		==========================
+
+
+Traceback (most recent call last):
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/kappasweep.py", line 45, in <module>
+    state, hist = train(config, data_iter=iter(trainobject), batch_size=np.min([1000,n]), loss='mse', test_every=1000, train_iters=30000, optim=optax.adamw,lr=1e-4)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../trainmini.py", line 166, in train
+    state = create_train_state(init_rng, model, mini_samp_x, optim=optim, **opt_kwargs) # the samp_x data is not used during this initialisation
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../trainmini.py", line 41, in create_train_state
+    params = model.init(rng, dummy_input)['params']
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../model/transformer.py", line 286, in __call__
+    decoder_mask = nn.make_causal_mask(jnp.zeros(inputs.shape[:2]))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/flax/linen/attention.py", line 760, in make_causal_mask
+    return make_attention_mask(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/n/home05/mletey/.conda/envs/try4/lib/python3.12/site-packages/flax/linen/attention.py", line 733, in make_attention_mask
+    mask = pairwise_fn(
+           ^^^^^^^^^^^^
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 40972801000 bytes.
+BufferAssignment OOM Debugging.
+BufferAssignment stats:
+             parameter allocation:   48.83MiB
+              constant allocation:         0B
+        maybe_live_out allocation:   38.16GiB
+     preallocated temp allocation:         0B
+                 total allocation:   38.21GiB
+              total fragmentation:         0B (0.00%)
+Peak buffers:
+	Buffer 1:
+		Size: 38.16GiB
+		Operator: op_name="jit(fn)/jit(main)/ge" source_file="/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../model/transformer.py" source_line=286
+		XLA Label: fusion
+		Shape: pred[1000,6401,6401]
+		==========================
+
+	Buffer 2:
+		Size: 24.42MiB
+		Entry Parameter Subshape: s32[1000,6401,1]
+		==========================
+
+	Buffer 3:
+		Size: 24.42MiB
+		Entry Parameter Subshape: s32[1000,1,6401]
+		==========================
+
+
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

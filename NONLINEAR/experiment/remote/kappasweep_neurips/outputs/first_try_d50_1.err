@@ -1,0 +1,3 @@
+mkdir: cannot create directory ‘runs/first_try_d50’: File exists
+/var/slurmd/spool/slurmd/job15513210/slurm_script: line 31: 2666437 Killed                  python kappasweep.py 50 $newdir $kappaind $avgind
+slurmstepd: error: Detected 1 oom_kill event in StepId=15513210.batch. Some of the step tasks have been OOM Killed.

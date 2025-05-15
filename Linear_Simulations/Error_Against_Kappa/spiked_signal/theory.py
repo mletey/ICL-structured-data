@@ -82,6 +82,24 @@ def ICL_error(Ctr, Ctesthat, tau, alpha, kappa, rho, numavg=10):
     interaction_term = idg*(1/d)*np.trace(Ctesthat@FR) - (idg*xi - nu**2)*(1/d)*np.trace(Ctesthat@FR2)
     return pretraining_term+interaction_term
 
+def ICL_pretraining(Ctr, tau, alpha, kappa, rho, numavg=10):
+    d = len(Ctr)
+    rhotr = (1/d)*np.trace(Ctr) + rho
+
+    if tau == 1:
+        return None
+    if tau > 1:
+        xi = 0
+    if tau < 1:
+        xi = xi_tau_less_1(tau, kappa, Ctr, rhotr/alpha)
+
+    nu = rhotr/alpha + xi
+    M, M2 = M_M2_empirical(kappa, nu, Ctr, numavg); Mprime = -M2;
+    
+    idg = (rho + nu - (nu**2)*M - xi*(1 - 2*nu*M - (nu**2)*Mprime))/(tau - (1 - 2*xi*M - (xi**2)*Mprime))
+    pretraining_term = rho + ((rho+1)/alpha)*(1 + (idg-2*nu)*M + (xi*idg - nu**2)*Mprime)
+    return pretraining_term
+
 def icl_scaled_isotropic(tau, alpha_tr, alpha_test, kappa, rho, ctr, ctest):
     if tau == 1:
         return None

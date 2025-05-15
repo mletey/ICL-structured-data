@@ -1,0 +1,33 @@
+ITER 1000:  loss=0.8537   l1_loss=0.0000  acc=0.0000
+ITER 2000:  loss=0.3546   l1_loss=0.0000  acc=0.0000
+ITER 3000:  loss=0.1300   l1_loss=0.0000  acc=0.0000
+ITER 4000:  loss=0.0938   l1_loss=0.0000  acc=0.0000
+ITER 5000:  loss=0.0900   l1_loss=0.0000  acc=0.0000
+ITER 6000:  loss=0.1009   l1_loss=0.0000  acc=0.0000
+ITER 7000:  loss=0.1104   l1_loss=0.0000  acc=0.0000
+ITER 8000:  loss=0.1186   l1_loss=0.0000  acc=0.0000
+ITER 9000:  loss=0.1226   l1_loss=0.0000  acc=0.0000
+ITER 10000:  loss=0.1275   l1_loss=0.0000  acc=0.0000
+ITER 11000:  loss=0.1324   l1_loss=0.0000  acc=0.0000
+ITER 12000:  loss=0.1351   l1_loss=0.0000  acc=0.0000
+ITER 13000:  loss=0.1424   l1_loss=0.0000  acc=0.0000
+ITER 14000:  loss=0.1474   l1_loss=0.0000  acc=0.0000
+ITER 15000:  loss=0.1492   l1_loss=0.0000  acc=0.0000
+ITER 16000:  loss=0.1522   l1_loss=0.0000  acc=0.0000
+ITER 17000:  loss=0.1578   l1_loss=0.0000  acc=0.0000
+ITER 18000:  loss=0.1583   l1_loss=0.0000  acc=0.0000
+ITER 19000:  loss=0.1603   l1_loss=0.0000  acc=0.0000
+ITER 20000:  loss=0.1615   l1_loss=0.0000  acc=0.0000
+ITER 21000:  loss=0.1628   l1_loss=0.0000  acc=0.0000
+ITER 22000:  loss=0.1635   l1_loss=0.0000  acc=0.0000
+ITER 23000:  loss=0.1632   l1_loss=0.0000  acc=0.0000
+ITER 24000:  loss=0.1621   l1_loss=0.0000  acc=0.0000
+ITER 25000:  loss=0.1615   l1_loss=0.0000  acc=0.0000
+ITER 26000:  loss=0.1643   l1_loss=0.0000  acc=0.0000
+ITER 27000:  loss=0.1649   l1_loss=0.0000  acc=0.0000
+ITER 28000:  loss=0.1669   l1_loss=0.0000  acc=0.0000
+ITER 29000:  loss=0.1672   l1_loss=0.0000  acc=0.0000
+ITER 30000:  loss=0.1674   l1_loss=0.0000  acc=0.0000
+TRAINING DONE
+DONE: TESTING ON PRETRAIN
+DONE: TESTING ON POWERS

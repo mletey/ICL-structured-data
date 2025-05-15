@@ -23,8 +23,12 @@ Ctr = np.diag([i for i in range(1,d+1)]); Ctr = (d/np.trace(Ctr))*Ctr
 
 Ctest1 = Ctr
 Ctest2 = np.eye(d)
-G = np.random.randn(d,d)
-Ctest3 = G@G.T/d
+
+power = 0.5
+Ctest3_antialigned_power = np.diag(np.array([(j + 1) ** -power for j in range(d)])); Ctest3_antialigned_power = (Ctest3_antialigned_power/np.trace(Ctest3_antialigned_power))*d
+Ctest4_aligned_power = np.diag(np.array([(d - j) ** -power for j in range(d)])); Ctest4_aligned_power = (Ctest4_aligned_power/np.trace(Ctest4_aligned_power))*d
+
+Ctest5 = np.diag(spikevalue(d,0,d-1))
 rho = 0.01
 
 test_errors = []
@@ -32,9 +36,12 @@ for i in tqdm(range(numavg)):
     runs = []
     #vals_simulation.append(simulation_Gamma_error(d, tau, alpha, kappa, rho, Ctr, Ctest, np.zeros(d)))
     Gamma = final_gamma(d, tau, alpha, kappa, rho, Ctr, lam=0.000001)
-    test_errors.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest1, Gamma))
-    test_errors.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest2, Gamma))
-    test_errors.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest3, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest1, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest2, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest3_antialigned_power, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest4_aligned_power, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest5, Gamma))
+    test_errors.append(runs)
 
 test_errors = np.array(test_errors)
 average_test_error = np.mean(test_errors, axis = 0)

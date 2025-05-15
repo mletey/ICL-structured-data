@@ -10,15 +10,16 @@ alpha = float(sys.argv[3])
 tau = float(sys.argv[4])
 numavg = int(sys.argv[5])
 kappaind = int(sys.argv[6])-1
-kappas = np.linspace(0.2,2.2,21) #np.linspace(0.1,4.1,21)
+train_power = float(sys.argv[7])
+kappas = np.linspace(0.1,2.1,21) #np.linspace(0.1,4.1,21)
 kappa = kappas[kappaind]
 print('kappa is ', kappa)
 
 signals = np.int64(np.linspace(0,d-1,d//2))
 
-# Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
+#Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
 
-Ctr = np.diag([i for i in range(1,d+1)]); Ctr = (d/np.trace(Ctr))*Ctr
+Ctr = np.diag(([i for i in range(1,d+1)])[::-1]); Ctr = (d/np.trace(Ctr))*Ctr
 
 vals_simulation_FAST = []
 rho = 0.01
@@ -31,6 +32,7 @@ for i in range(numavg):
     for signal_index in signals:
         Ctest = np.diag(spikevalue(d,0,signal_index))
         runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctest, Gamma))
+    runs.append(trace_formula_gamma(d, rho, int(alpha*d), np.zeros(d), Ctr, Gamma))
     test_errors.append(runs)
 
 test_errors = np.array(test_errors)
