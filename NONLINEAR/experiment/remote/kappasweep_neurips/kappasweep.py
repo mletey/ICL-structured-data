@@ -41,8 +41,8 @@ train_power = 0.9
 Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
 
 trainobject = finitetasksampler(d, l, n, k, rho, Ctr)
-config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=2, n_mlp_layers=1, pure_linear_self_att=False)
-state, hist = train(config, data_iter=iter(trainobject), batch_size=n, loss='mse', test_every=1000, train_iters=30000, optim=optax.adamw,lr=1e-4)
+config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=1, n_mlp_layers=1, pure_linear_self_att=False)
+state, hist = train(config, data_iter=iter(trainobject), batch_size=n, loss='mse', test_every=1000, train_iters=5000, optim=optax.adamw,lr=1e-4)
 
 print('TRAINING DONE')
 
@@ -70,7 +70,7 @@ power_test_m = []
 power_test_s = []
 for test_power in test_powers:
     Ctest = np.diag(np.array([(j + 1) ** -test_power for j in range(d)])); Ctest = (Ctest/np.trace(Ctest))*d
-    testobject = fulltasksampler(d, l, n, rho, Ctr)
+    testobject = fulltasksampler(d, l, n, rho, Ctest)
     tracker = []
     for _ in range(numsamples):
         xs, labels = next(testobject); # generates data
@@ -89,12 +89,12 @@ with open(file_path, 'a') as file:
 
 print('DONE: TESTING ON POWERS')
 
-signals = np.int64(np.linspace(0,d-1,d//2))
+signals = np.int64(np.linspace(0,d-1,d))
 spike_test_m = []
 spike_test_s = []
 for signal_index in signals:
     Ctest = np.diag(spikes(d, signal_index)); 
-    testobject = fulltasksampler(d, l, n, rho, Ctr)
+    testobject = fulltasksampler(d, l, n, rho, Ctest)
     tracker = []
     for _ in range(numsamples):
         xs, labels = next(testobject); # generates data
@@ -106,10 +106,10 @@ for signal_index in signals:
 
 file_path = f'./{myname}/test_spikes_m_{avgind}.txt'
 with open(file_path, 'a') as file:
-    file.write(f'[{kappaind}, {power_test_m}],')
+    file.write(f'[{kappaind}, {spike_test_m}],')
     file_path = f'./{myname}/test_spikes_s_{avgind}.txt'
 with open(file_path, 'a') as file:
-    file.write(f'[{kappaind}, {power_test_s}],')
+    file.write(f'[{kappaind}, {spike_test_s}],')
 
 # file_path = f'./{myname}/pickles/train-{kappaind}-{avgind}.pkl'
 # with open(file_path, 'wb') as fp:

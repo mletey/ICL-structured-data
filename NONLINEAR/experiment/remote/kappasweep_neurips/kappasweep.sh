@@ -1,15 +1,15 @@
 #!/bin/bash
-# try_2layer_d20_fullbatch.sbatch
+# d10_1block_h1_train5000.sbatch
 # 
-#SBATCH --job-name=try_2layer_d20_fullbatch
+#SBATCH --job-name=d10_1block_h1_train5000
 #SBATCH -c 20
 #SBATCH -t 23:00:00
 #SBATCH -p kempner
 #SBATCH --gres=gpu:1
-#SBATCH --mem=300GB
-#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/try_2layer_d20_fullbatch_%a.out
-#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/try_2layer_d20_fullbatch_%a.err
-#SBATCH --array=1-20%12
+#SBATCH --mem=100GB
+#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/d10_1block_h1_train5000_%a.out
+#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/d10_1block_h1_train5000_%a.err
+#SBATCH --array=1-25%12
 #SBATCH --account=kempner_pehlevan_lab
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
@@ -28,4 +28,4 @@ calculate_indices $SLURM_ARRAY_TASK_ID
 parentdir="runs"
 newdir="$parentdir/${SLURM_JOB_NAME}"
 mkdir "$newdir"
-python kappasweep.py 20 $newdir $kappaind $avgind
+python kappasweep.py 10 $newdir $kappaind $avgind

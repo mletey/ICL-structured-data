@@ -1,2 +1,0 @@
-mkdir: cannot create directory ‘runs/NIPS_piano_largealpha_d120’: File exists
-  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [1:08:54<10:20:06, 4134.08s/it] 20%|██        | 2/10 [2:17:34<9:10:06, 4125.83s/it] slurmstepd: error: *** JOB 15364763 ON holy8a29612 CANCELLED AT 2025-05-14T13:17:41 ***
