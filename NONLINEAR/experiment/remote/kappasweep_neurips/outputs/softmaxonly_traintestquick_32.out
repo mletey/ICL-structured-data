@@ -1,0 +1,13 @@
+ITER 100:  loss=1.4373   l1_loss=0.0000  acc=0.0000
+ITER 200:  loss=1.1503   l1_loss=0.0000  acc=0.0000
+ITER 300:  loss=0.9692   l1_loss=0.0000  acc=0.0000
+ITER 400:  loss=0.7103   l1_loss=0.0000  acc=0.0000
+ITER 500:  loss=0.4965   l1_loss=0.0000  acc=0.0000
+ITER 600:  loss=0.3597   l1_loss=0.0000  acc=0.0000
+ITER 700:  loss=0.2853   l1_loss=0.0000  acc=0.0000
+ITER 800:  loss=0.2394   l1_loss=0.0000  acc=0.0000
+ITER 900:  loss=0.2096   l1_loss=0.0000  acc=0.0000
+ITER 1000:  loss=0.1887   l1_loss=0.0000  acc=0.0000
+TRAINING DONE
+DONE: TESTING ON PRETRAIN
+DONE: TESTING ON POWERS

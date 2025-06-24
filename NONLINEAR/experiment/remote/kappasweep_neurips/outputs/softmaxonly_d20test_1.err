@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘runs/softmaxonly_d20test’: File exists
+mkdir: cannot create directory ‘runs/softmaxonly_d20test/pickles’: File exists

@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘runs/new_test_matrices_d10_power’: File exists
+mkdir: cannot create directory ‘runs/new_test_matrices_d10_power/pickles’: File exists

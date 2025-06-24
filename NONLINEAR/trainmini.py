@@ -38,11 +38,13 @@ class TrainState(train_state.TrainState):
 
 
 def create_train_state(rng, model, dummy_input, lr=1e-4, optim=optax.adamw, **opt_kwargs):
+    #print("create_train_state: beginning",flush=True)
     params = model.init(rng, dummy_input)['params']
-    #print("creattrainstate: model init works")
+    #print("create_train_state: model init works",flush=True)
     tx = optim(learning_rate=lr, **opt_kwargs)
-    #print("creattrainstate: optaxadam works")
+    #print("create_train_state: optaxadam works",flush=True)
 
+    #print("create_train_state: RIGHT BEFORE TRAINSTATE.CREATE",flush=True)
     return TrainState.create(
         apply_fn=model.apply,
         params=params,
@@ -141,8 +143,8 @@ def get_random_batch(data, batch_size):
     return xs[indices],ys[indices]
 
 def train(config, data_iter, batch_size, 
-          idg_iter=None,
-          test_iter=None, 
+          test_1_iter=None,
+          test_2_iter=None, 
           loss='ce', 
           train_iters=10_000, test_iters=1000, test_every=1_000, 
           early_stop_n=None, early_stop_key='loss', early_stop_decision='min',
@@ -153,47 +155,52 @@ def train(config, data_iter, batch_size,
     if seed is None:
         seed = new_seed()
     
-    if test_iter is None:
-        test_iter = data_iter
-    if idg_iter is None:
-        idg_iter = data_iter
+    if test_1_iter is None:
+        test_1_iter = data_iter
+    if test_2_iter is None:
+        test_2_iter = data_iter
 
     init_rng = jax.random.key(seed)
     model = config.to_model()
 
     samp = next(data_iter)
     mini_samp_x, _ = get_random_batch(samp, batch_size)
+    #print("inside train: right BEFORE calling create_train_state",flush=True)
     state = create_train_state(init_rng, model, mini_samp_x, optim=optim, **opt_kwargs) # the samp_x data is not used during this initialisation
+    #print("inside train: right AFTER calling create_train_state",flush=True)
 
     hist = {
         'train': [],
-        'test': [],
-        'true_test': []
+        'test1': [],
+        'test2': []
     }
 
     # sample from data class, this sample will be the only one used during training
     # this is in contrast to the online training implemented in Will's train.py
     mybatch = next(data_iter)
 
+    #print('starting the FIRST training iteration',flush=True)
     for step in range(train_iters):
         for _ in range(1 + len(mybatch[-1]) // batch_size):
             minibatchi = get_random_batch(mybatch, batch_size)
             state = train_step(state, minibatchi, loss=loss, l1_weight=l1_weight, l2_weight=l2_weight)
-        state = compute_metrics(state, mybatch, loss=loss) 
+        #print('finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS',flush=True)
+        state = compute_metrics(state, minibatchi, loss=loss) 
+        #print('succesfully updated state using COMPUTE_METRICS',flush=True)
 
         if (step + 1) % test_every == 0:
             hist['train'].append(state.metrics)
             state = state.replace(metrics=Metrics.empty()) 
             
             test_state = state
-            for _, test_batch in zip(range(test_iters), idg_iter):
+            for _, test_batch in zip(range(test_iters), test_1_iter):
                 test_state = compute_metrics(test_state, test_batch, loss=loss)
-            hist['test'].append(test_state.metrics)
+            hist['test1'].append(test_state.metrics)
             
             test_state = state
-            for _, test_batch in zip(range(test_iters), test_iter):
+            for _, test_batch in zip(range(test_iters), test_2_iter):
                 test_state = compute_metrics(test_state, test_batch, loss=loss)
-            hist['true_test'].append(test_state.metrics)
+            hist['test2'].append(test_state.metrics)
 
             _print_status(step+1, hist)
             if early_stop_n is not None and len(hist['train']) > early_stop_n:
@@ -207,6 +214,6 @@ def train(config, data_iter, batch_size,
 
             
 def _print_status(step, hist):
-    print(f'ITER {step}:  loss={hist["test"][-1].loss:.4f}   l1_loss={hist["test"][-1].l1_loss:.4f}  acc={hist["test"][-1].accuracy:.4f}')
+    print(f'ITER {step}:  loss={hist["train"][-1].loss:.4f}   l1_loss={hist["train"][-1].l1_loss:.4f}  acc={hist["train"][-1].accuracy:.4f}')
 
 

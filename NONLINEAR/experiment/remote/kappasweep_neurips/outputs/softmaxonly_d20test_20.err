@@ -1,0 +1,5 @@
+mkdir: cannot create directory ‘runs/softmaxonly_d20test’: File exists
+mkdir: cannot create directory ‘runs/softmaxonly_d20test/pickles’: File exists
+2025-06-12 14:48:49.791479: W external/tsl/tsl/framework/bfc_allocator.cc:485] Allocator (GPU_0_bfc) ran out of memory trying to allocate 15.28GiB (rounded to 16404486400)requested by op 
+2025-06-12 14:48:49.791805: W external/tsl/tsl/framework/bfc_allocator.cc:497] ******************************************************______________________________________________
+/var/slurmd/spool/slurmd/job19140072/slurm_script: line 33: 2998484 Segmentation fault      (core dumped) python kappasweep.py 20 $newdir $kappaind $avgind

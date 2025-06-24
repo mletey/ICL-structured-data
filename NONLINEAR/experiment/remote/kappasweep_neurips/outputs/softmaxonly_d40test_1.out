@@ -1,0 +1,181 @@
+LITERALLY JUST STARTING THE FUCKING JOB
+purge
+load python 3.10.12
+LOAD THE FUCKING ENVIRNOMENT FUCK YOU
+do the xla client bullshit
+set client memory 07
+CALCULATE THE GODDAMN INDICES
+ABOUT THE RUN THE FUCKING PYTHON
+STARTING THE GODDAMN FUCKING PROGRAM FUCK
+import fucking numpy
+import fucking optax
+import fucking pickl
+import fucking sys
+import fucking common
+import fucking train
+import fucking transformer
+import fucking samplers
+LITERALLY JUST READ IN THE VALUES
+CONSTRUCT A 20X20 MATRIX FFS
+CREATED DATA
+CREATED DUMMY TRANSFORMER
+TransformerConfig: returning transformer
+inside train: right BEFORE calling create_train_state
+create_train_state: beginning
+Transformer Main Module: beginning
+SingleHeadSelfAttention: returning attn matrx
+TransformerBlock: returning output
+Transformer Main Module: end
+create_train_state: model init works
+create_train_state: optaxadam works
+create_train_state: RIGHT BEFORE TRAINSTATE.CREATE
+inside train: right AFTER calling create_train_state
+starting the FIRST training iteration
+Transformer Main Module: beginning
+SingleHeadSelfAttention: returning attn matrx
+TransformerBlock: returning output
+Transformer Main Module: end
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+Transformer Main Module: beginning
+SingleHeadSelfAttention: returning attn matrx
+TransformerBlock: returning output
+Transformer Main Module: end
+succesfully updated state using COMPUTE_METRICS
+Transformer Main Module: beginning
+SingleHeadSelfAttention: returning attn matrx
+TransformerBlock: returning output
+Transformer Main Module: end
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+Transformer Main Module: beginning
+SingleHeadSelfAttention: returning attn matrx
+TransformerBlock: returning output
+Transformer Main Module: end
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS
+finished a full set of minibatching. ABOUT TO CALL COMPUTE_METRICS
+succesfully updated state using COMPUTE_METRICS

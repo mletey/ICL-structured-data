@@ -56,6 +56,21 @@ def xi_tau_less_1(tau, kappa, Ctr, rhotr_alpha):
     root = optimize.brentq(objectivefunc, leftbound, rightbound, args=(tau, kappa, Ctr, rhotr_alpha))
     return root
 
+def resolvent_alignment(Ctr, Ctest, tau, alpha, kappa, rho, numavg=10):
+    d = len(Ctr)
+    rhotr = (1/d)*np.trace(Ctr) + rho
+
+    if tau == 1:
+        return None
+    if tau > 1:
+        xi = 0
+    if tau < 1:
+        xi = xi_tau_less_1(tau, kappa, Ctr, rhotr/alpha)
+
+    nu = rhotr/alpha + xi
+    M, _ = M_M2_empirical(kappa, nu, Ctr, numavg); 
+    FR = np.linalg.inv((1 - 1/kappa + (nu/kappa)*M)*Ctr + nu*np.eye(d))
+    return (1/d)*np.trace(Ctest@FR)
 
 # ------------------------------------------------------------------------------------
 # -----------------------------------ICL ERRORS---------------------------------------

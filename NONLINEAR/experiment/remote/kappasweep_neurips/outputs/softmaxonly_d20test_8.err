@@ -1,0 +1,14 @@
+mkdir: cannot create directory ‘runs/softmaxonly_d20test’: File exists
+mkdir: cannot create directory ‘runs/softmaxonly_d20test/pickles’: File exists
+2025-06-12 14:48:13.254984: W external/tsl/tsl/framework/bfc_allocator.cc:485] Allocator (GPU_0_bfc) ran out of memory trying to allocate 15.28GiB (rounded to 16404486400)requested by op 
+2025-06-12 14:48:13.255315: W external/tsl/tsl/framework/bfc_allocator.cc:497] ******************************************************______________________________________________
+Traceback (most recent call last):
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/kappasweep.py", line 49, in <module>
+    state, hist = train(config, data_iter=iter(trainobject), test_1_iter=iter(testobject_1), test_2_iter=iter(testobject_2), batch_size=50, loss='mse', test_every=100, train_iters=1000, optim=optax.adamw,lr=1e-4)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../trainmini.py", line 182, in train
+    state = compute_metrics(state, mybatch, loss=loss) 
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: basic_string::_M_replace_aux
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

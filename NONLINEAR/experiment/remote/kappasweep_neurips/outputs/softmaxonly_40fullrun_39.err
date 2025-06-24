@@ -1,0 +1,3 @@
+mkdir: cannot create directory ‘runs/softmaxonly_40fullrun’: File exists
+mkdir: cannot create directory ‘runs/softmaxonly_40fullrun/pickles’: File exists
+slurmstepd: error: *** JOB 20294479 ON holygpu8a29304 CANCELLED AT 2025-06-18T10:05:02 DUE TO TIME LIMIT ***

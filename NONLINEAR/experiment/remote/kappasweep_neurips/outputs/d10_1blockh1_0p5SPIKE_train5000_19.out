@@ -1,0 +1,8 @@
+ITER 1000:  loss=0.9847   l1_loss=0.0000  acc=0.0000
+ITER 2000:  loss=0.8621   l1_loss=0.0000  acc=0.0000
+ITER 3000:  loss=0.5521   l1_loss=0.0000  acc=0.0000
+ITER 4000:  loss=0.3536   l1_loss=0.0000  acc=0.0000
+ITER 5000:  loss=0.2749   l1_loss=0.0000  acc=0.0000
+TRAINING DONE
+DONE: TESTING ON PRETRAIN
+DONE: TESTING ON POWERS

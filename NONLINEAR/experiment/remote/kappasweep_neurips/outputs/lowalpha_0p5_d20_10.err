@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘runs/lowalpha_0p5_d20’: File exists
+mkdir: cannot create directory ‘runs/lowalpha_0p5_d20/pickles’: File exists

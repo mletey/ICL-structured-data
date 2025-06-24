@@ -1,0 +1,11 @@
+mkdir: cannot create directory ‘runs/softmaxonly_25fullrun’: File exists
+mkdir: cannot create directory ‘runs/softmaxonly_25fullrun/pickles’: File exists
+Traceback (most recent call last):
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/kappasweep.py", line 163, in <module>
+    xs, labels = next(testobject); # generates data
+                 ^^^^^^^^^^^^^^^^
+  File "/n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/../../../task/regression_structured.py", line 25, in __next__
+    ws = self.rng.multivariate_normal(mean=np.zeros(self.d), cov=self.Ctask, size=self.n)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "numpy/random/_generator.pyx", line 3770, in numpy.random._generator.Generator.multivariate_normal
+ValueError: mean and cov must have same length

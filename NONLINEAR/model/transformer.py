@@ -45,6 +45,7 @@ class TransformerConfig:
     pure_linear_self_att: bool = False
 
     def to_model(self):
+        #print("TransformerConfig: returning transformer",flush=True)
         return Transformer(self)
 
 
@@ -117,6 +118,7 @@ class SingleHeadSelfAttention(nn.Module):
         # if self.config.softmax_val:
             # value = jax.nn.softmax(value)
 
+        #print("SingleHeadSelfAttention: returning attn matrx",flush=True)
         attn_out = attn_weights @ value
         return attn_out
 
@@ -192,6 +194,7 @@ class TransformerBlock(nn.Module):
         # x = x + pre_mlp_x
         x = nn.LayerNorm()(x)
 
+        #print("TransformerBlock: returning output",flush=True)
         return x
 
 
@@ -258,7 +261,8 @@ class Transformer(nn.Module):
 
     @nn.compact
     def __call__(self, inputs):
-
+        
+        #print("Transformer Main Module: beginning",flush=True)
         config = self.config
 
         y = inputs
@@ -297,5 +301,7 @@ class Transformer(nn.Module):
 
             if config.n_out == 1:
                 logits = logits.flatten()
+
+        #print("Transformer Main Module: end",flush=True)
         return logits
 
