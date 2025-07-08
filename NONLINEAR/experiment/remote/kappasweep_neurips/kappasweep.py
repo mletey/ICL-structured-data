@@ -23,8 +23,8 @@ avgind = int(sys.argv[4]) # average index specified by array
 kappa = kappas[kappaind]; k = int(kappa*d);
 
 train_power = 0.9
-Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
-#Ctr = np.eye(d)
+#Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
+Ctr = np.eye(d)
 
 trainobject = finitetasksampler(d, l, n, k, rho, Ctr)
 testobject_1 = fulltasksampler(d, l, n, rho, Ctr)
