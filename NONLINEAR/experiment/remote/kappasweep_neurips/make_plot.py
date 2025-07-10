@@ -76,7 +76,7 @@ plt.rcParams["figure.figsize"] = (16,10)
 color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
 same_color = "#07C573"
 
-keys = ['mary', 'trace', 'F']
+keys = ['mary', 'trace', 'F', 'cka']
 for key in keys:
     for i, kappa in enumerate(kappas):
         if key == 'mary':
@@ -100,6 +100,13 @@ for key in keys:
             for test_power in test_powers:
                 Ctest = np.diag(np.array([(j + 1) ** -test_power for j in range(d)])); Ctest = (Ctest/np.trace(Ctest))*d
                 alignment_powers.append(resolvent_alignment(Ctr, Ctest, tau, alpha, kappa, rho, numavg=100))
+        elif key == 'cka':
+            alignment_match = cka(d, Ctr, Ctr)/np.sqrt(cka(d, Ctr, Ctr)*cka(d, Ctr, Ctr))
+            alignment_spikes = [cka(d, Ctr, np.diag(spikevalue(d, 0.5, sig_index)))/np.sqrt(cka(d, np.diag(spikevalue(d, 0.5, sig_index)), np.diag(spikevalue(d, 0.5, sig_index)))*cka(d, Ctr, Ctr)) for sig_index in signals]
+            alignment_powers = []
+            for test_power in test_powers:
+                Ctest = np.diag(np.array([(j + 1) ** -test_power for j in range(d)])); Ctest = (Ctest/np.trace(Ctest))*d
+                alignment_powers.append(cka(d,Ctr,Ctest)/np.sqrt(cka(d,Ctr,Ctr)*cka(d,Ctest,Ctest)))
         if i == 0:
             plt.scatter(alignment_powers, test_on_powers_m[i,:], marker='o', s=100, color='grey', label = 'Test on powerlaw')
             plt.scatter(alignment_spikes, test_on_spikes_m[i,:], marker='d', s=100, color='grey', label = 'Test on spiked signal')

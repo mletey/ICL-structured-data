@@ -31,7 +31,7 @@ testobject_1 = fulltasksampler(d, l, n, rho, Ctr)
 testobject_2 = fulltasksampler(d, l, n, rho, np.diag(spikevalue(d, 0.5, 5)))
 
 config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=1, n_mlp_layers=0, pure_linear_self_att=False)
-state, hist = train(config, data_iter=iter(trainobject), test_1_iter=iter(testobject_1), test_2_iter=iter(testobject_2), batch_size=16, loss='mse', test_every=100, train_iters=1000, optim=optax.adamw,lr=1e-4)
+state, hist = train(config, data_iter=iter(trainobject), test_1_iter=iter(testobject_1), test_2_iter=iter(testobject_2), batch_size=16, loss='mse', test_every=100, train_iters=3000, optim=optax.adamw,lr=1e-4)
 
 print('TRAINING DONE',flush=True)
 file_path = f'./{myname}/pickles/train-{kappaind}-{avgind}.pkl'

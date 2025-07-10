@@ -226,3 +226,8 @@ def ICL_for_spiked_test(Ctr, index_eignfuncs, spikefactor, tau, alpha, kappa, rh
         spikes.append(rhotest - 2*gamma_Atest + (gammaeq_B_gammaeq + quadratic_extra))
 
     return np.array(spikes)
+
+
+def cka(d, A, B):
+    H = np.eye(d) - (1/d)*np.outer(np.ones(d), np.ones(d)) 
+    return np.trace(H@A@H@B)/((d-1)**2)

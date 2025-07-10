@@ -1,9 +1,9 @@
 #!/bin/bash
-# lowalpha_0p5_d20.sbatch
+# lowalpha_0p5_d20_train3000.sbatch
 #
-#SBATCH --job-name=lowalpha_0p5_d20
-#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_%a.out
-#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_%a.err
+#SBATCH --job-name=lowalpha_0p5_d20_train3000
+#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_train3000_%a.out
+#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_train3000_%a.err
 #SBATCH -c 4
 #SBATCH --mem=64GB
 #SBATCH --gres=gpu:1
