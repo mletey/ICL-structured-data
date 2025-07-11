@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘runs/purelinear_d25_1000steps’: File exists
+mkdir: cannot create directory ‘runs/purelinear_d25_1000steps/pickles’: File exists

@@ -1,15 +1,15 @@
 #!/bin/bash
-# lowalpha_0p5_d20_train3000.sbatch
+# purelinear_d25_1000steps.sbatch
 #
-#SBATCH --job-name=lowalpha_0p5_d20_train3000
-#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_train3000_%a.out
-#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/lowalpha_0p5_d20_train3000_%a.err
+#SBATCH --job-name=purelinear_d25_1000steps
+#SBATCH -o /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/purelinear_d25_1000steps_%a.out
+#SBATCH -e /n/netscratch/pehlevan_lab/Lab/ml/ICL-structured-data/NONLINEAR/experiment/remote/kappasweep_neurips/outputs/purelinear_d25_1000steps_%a.err
 #SBATCH -c 4
 #SBATCH --mem=64GB
 #SBATCH --gres=gpu:1
-#SBATCH --time=10:00:00
-#SBATCH --array=1-20%12
-#SBATCH -p kempner
+#SBATCH --time=1:20:00
+#SBATCH --array=1-40%12
+#SBATCH -p kempner_h100
 #SBATCH --account=kempner_pehlevan_lab
 #SBATCH --mail-type=END
 #SBATCH --mail-user=maryletey@fas.harvard.edu
@@ -31,4 +31,4 @@ newdir="$parentdir/${SLURM_JOB_NAME}"
 pkldir="$parentdir/${SLURM_JOB_NAME}/pickles"
 mkdir "$newdir"
 mkdir "$pkldir"
-python kappasweep.py 20 $newdir $kappaind $avgind
+python kappasweep.py 25 $newdir $kappaind $avgind

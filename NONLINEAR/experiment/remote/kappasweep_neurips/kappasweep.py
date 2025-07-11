@@ -12,7 +12,7 @@ from task.regression_structured import fulltasksampler, finitetasksampler
 
 rho = 0.01
 d = int(sys.argv[1]);
-alpha = 0.5; l = int(alpha*d);
+alpha = 2; l = int(alpha*d);
 tau = 4; n = int(tau*(d**2));
 kappas = [0.2, 0.5, 1, 2, 10]
 h = d+1;
@@ -23,15 +23,15 @@ avgind = int(sys.argv[4]) # average index specified by array
 kappa = kappas[kappaind]; k = int(kappa*d);
 
 train_power = 0.9
-#Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
-Ctr = np.eye(d)
+Ctr = np.diag(np.array([(j + 1) ** -train_power for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
+# Ctr = np.eye(d)
 
 trainobject = finitetasksampler(d, l, n, k, rho, Ctr)
 testobject_1 = fulltasksampler(d, l, n, rho, Ctr)
 testobject_2 = fulltasksampler(d, l, n, rho, np.diag(spikevalue(d, 0.5, 5)))
 
-config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=1, n_mlp_layers=0, pure_linear_self_att=False)
-state, hist = train(config, data_iter=iter(trainobject), test_1_iter=iter(testobject_1), test_2_iter=iter(testobject_2), batch_size=16, loss='mse', test_every=100, train_iters=3000, optim=optax.adamw,lr=1e-4)
+config = TransformerConfig(pos_emb=False, n_hidden=h, n_layers=1, n_mlp_layers=0, pure_linear_self_att=True)
+state, hist = train(config, data_iter=iter(trainobject), test_1_iter=iter(testobject_1), test_2_iter=iter(testobject_2), batch_size=16, loss='mse', test_every=100, train_iters=1000, optim=optax.adamw,lr=1e-4)
 
 print('TRAINING DONE',flush=True)
 file_path = f'./{myname}/pickles/train-{kappaind}-{avgind}.pkl'
@@ -57,9 +57,9 @@ with open(file_path, 'a') as file:
 with open(file_path, 'a') as file:
     file.write(f'[{kappaind}, {np.std(tracker)}],')
 
-# test_powers = np.linspace(train_power - 0.5, train_power + 0.5, 11)
-# test_powers = [0.05,0.1,0.2,0.4,0.6,0.8,1,1.2]
-test_powers = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4]
+test_powers = np.linspace(train_power - 0.5, train_power + 0.5, 11)
+# # test_powers = [0.05,0.1,0.2,0.4,0.6,0.8,1,1.2]
+# test_powers = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4]
 power_test_m = []
 power_test_s = []
 for test_power in test_powers:

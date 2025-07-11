@@ -64,20 +64,21 @@ test_on_spikes_s = np.std(np.array(reads),axis=0)
 print('shape spikes', test_on_spikes_m.shape)
 # This will be 2d with shape num(kappas) x num(spikes)
 
-# test_powers = np.linspace(train_power - 0.5, train_power + 0.5, 11)
-test_powers = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4]
+test_powers = np.linspace(train_power - 0.5, train_power + 0.5, 11)
+# test_powers = [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4]
 
 experiment_d = d
 signals = np.int64(np.linspace(0,experiment_d-1,experiment_d))
 
 sns.set(style="white",font_scale=2,palette="rocket")
 plt.rcParams['lines.linewidth'] = 3.5
-plt.rcParams["figure.figsize"] = (16,10)
+plt.rcParams["figure.figsize"] = (50,10)
 color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
+fig, axes = plt.subplots(1, 4, constrained_layout=True) 
 same_color = "#07C573"
 
-keys = ['mary', 'trace', 'F', 'cka']
-for key in keys:
+keys = ['mary', 'F', 'trace', 'cka']
+for plotting_index, key in enumerate(keys):
     for i, kappa in enumerate(kappas):
         if key == 'mary':
             alignment_match = ICL_alignment(Ctr, Ctr, tau, alpha, kappa, rho, numavg=100)
@@ -108,41 +109,41 @@ for key in keys:
                 Ctest = np.diag(np.array([(j + 1) ** -test_power for j in range(d)])); Ctest = (Ctest/np.trace(Ctest))*d
                 alignment_powers.append(cka(d,Ctr,Ctest)/np.sqrt(cka(d,Ctr,Ctr)*cka(d,Ctest,Ctest)))
         if i == 0:
-            plt.scatter(alignment_powers, test_on_powers_m[i,:], marker='o', s=100, color='grey', label = 'Test on powerlaw')
-            plt.scatter(alignment_spikes, test_on_spikes_m[i,:], marker='d', s=100, color='grey', label = 'Test on spiked signal')
-            plt.scatter(alignment_match, test_equals_train_m[i], marker='*', s=300, color=same_color, label = 'Test on pretrain')
+            axes[plotting_index].scatter(alignment_powers, test_on_powers_m[i,:], marker='o', s=100, color='grey', label = 'Test on powerlaw')
+            axes[plotting_index].scatter(alignment_spikes, test_on_spikes_m[i,:], marker='d', s=100, color='grey', label = 'Test on spiked signal')
+            axes[plotting_index].scatter(alignment_match, test_equals_train_m[i], marker='*', s=300, color=same_color, label = 'Test on pretrain')
 
         concatenated_x = alignment_spikes + alignment_powers + [alignment_match]
         concatenated_y = list(test_on_spikes_m[i,:]) + list(test_on_powers_m[i,:]) + [test_equals_train_m[i]]
         zipped = list(zip(concatenated_x, concatenated_y))
         sorted_pairs = sorted(zipped, key=lambda pair: pair[0])
         sorted_X, sorted_Y = zip(*sorted_pairs)
-        plt.plot(sorted_X,sorted_Y,color = color_cycle[i+1], alpha = 0.5, label =fr"$\kappa = $ {kappa}")
+        axes[plotting_index].plot(sorted_X,sorted_Y,color = color_cycle[i+1], alpha = 0.5, label =fr"$\kappa = $ {kappa}")
 
-        plt.scatter(alignment_spikes, test_on_spikes_m[i,:], marker='d', s=100, color=color_cycle[i+1], zorder = i+1)
+        axes[plotting_index].scatter(alignment_spikes, test_on_spikes_m[i,:], marker='d', s=100, color=color_cycle[i+1], zorder = i+1)
         for x, y, label in zip(alignment_spikes, test_on_spikes_m[i,:], signals):
-            plt.text(x, y + 0.02, f'{(label+1):.0f}', color=color_cycle[i+1], fontsize=9, ha='center')
-        plt.scatter(alignment_powers, test_on_powers_m[i,:], marker='o', s=100, color=color_cycle[i+1], zorder = i+1)
+            axes[plotting_index].text(x, y + 0.02, f'{(label+1):.0f}', color=color_cycle[i+1], fontsize=9, ha='center')
+        axes[plotting_index].scatter(alignment_powers, test_on_powers_m[i,:], marker='o', s=100, color=color_cycle[i+1], zorder = i+1)
         for x, y, label in zip(alignment_powers, test_on_powers_m[i,:], test_powers):
-            plt.text(x, y + 0.02, f'{(label-train_power):.1f}', color=color_cycle[i+1], fontsize=9, ha='center')
-        plt.scatter(alignment_match, test_equals_train_m[i], marker='*', s=300, color=same_color, zorder = i+1)
+            axes[plotting_index].text(x, y + 0.02, f'{(label-train_power):.1f}', color=color_cycle[i+1], fontsize=9, ha='center')
+        axes[plotting_index].scatter(alignment_match, test_equals_train_m[i], marker='*', s=300, color=same_color, zorder = i+1)
 
-    # plt.subplots_adjust(right=0.75)  # Makes space for legend
-    # leg = plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-    leg = plt.legend()
+    leg = axes[plotting_index].legend()
     leg.get_frame().set_alpha(0)
-    plt.gca().spines['top'].set_color('lightgray')
-    plt.gca().spines['right'].set_color('lightgray')
-    plt.gca().spines['bottom'].set_color('lightgray')
-    plt.gca().spines['left'].set_color('lightgray')
+    axes[plotting_index].spines['top'].set_color('lightgray')
+    axes[plotting_index].spines['right'].set_color('lightgray')
+    axes[plotting_index].spines['bottom'].set_color('lightgray')
+    axes[plotting_index].spines['left'].set_color('lightgray')
     if key == 'mary':
-        plt.xlabel(fr"Theoretical alignment measure $e_{{\mathrm{{align}}}}$")
+        axes[plotting_index].set_xlabel(fr"Theory-derived measure $e_{{\mathrm{{align}}}}(C_{{\mathrm{{tr}}}}, C_{{\mathrm{{test}}}})$")
     if key == 'trace':
-        plt.xlabel(fr"Trace alignment measure $\mathrm{{tr}}[\mathrm{{Ctest}} \mathrm{{Ctr}}^{{-1}}]$")
+        axes[plotting_index].set_xlabel(fr"Simple matrix measure $\mathrm{{tr}}[C_{{\mathrm{{test}}}}C_{{\mathrm{{tr}}}}^{{-1}}]$")
     if key == 'F':
-        plt.xlabel(fr"Resolvent alignment measure $\mathrm{{tr}}[\mathrm{{Ctest}} F_{{\mathrm{{Ctr}}}}]$")
-    plt.ylabel('ICL error')
-    plt.gca().tick_params(axis='both', which='major')
-    plt.tight_layout()
-    plt.savefig(f'figs/{figurename}_{key}.png')
-    plt.clf()
+        axes[plotting_index].set_xlabel(fr"Resolvent measure $\mathrm{{tr}}[C_{{\mathrm{{test}}}}F]$")
+    if key == 'cka':
+        axes[plotting_index].set_xlabel(fr"Kernel measure $\mathrm{{CKA}}(C_{{\mathrm{{tr}}}}, C_{{\mathrm{{test}}}})$")
+    axes[plotting_index].set_ylabel('ICL error')
+    axes[plotting_index].tick_params(axis='both', which='major')
+    
+plt.savefig(f'figs/{figurename}.png')
+plt.clf()
