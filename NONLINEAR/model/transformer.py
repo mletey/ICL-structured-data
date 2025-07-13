@@ -213,7 +213,7 @@ class LinearSelfAttentionBlock(nn.Module):
         depth = query.shape[-1]
 
         attn_weights = jnp.einsum('...qd,...kd->...qk', query, key)
-        attn_weights /= jnp.sqrt(depth) #this could be a problem, this will be h not d so perhaps wrong rescaling??
+        attn_weights /= jnp.sqrt(depth) 
         
         attn_out = attn_weights @ value
         return attn_out
