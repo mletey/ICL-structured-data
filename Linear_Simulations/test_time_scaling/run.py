@@ -20,20 +20,24 @@ signals = np.int64(np.linspace(0,d-1,d//2))
 if option == 0:
     Ctr = np.eye(d)
 if option == 1:
-    Ctr = np.diag(([i for i in range(1,d+1)])[::-1]); Ctr = (d/np.trace(Ctr))*Ctr
+    G = np.random.randn(d,d)
+    Ctr = G@G.T; Ctr = (d/np.trace(Ctr))*Ctr
+    # Ctr = np.diag(([i for i in range(1,d+1)])[::-1]); Ctr = (d/np.trace(Ctr))*Ctr
 if option == 2:
+    Ctr = np.diag(np.array([(j + 1) ** (-float(0.5)) for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
+if option == 3:
     Ctr = np.diag(np.array([(j + 1) ** (-float(1.5)) for j in range(d)])); Ctr = (Ctr/np.trace(Ctr))*d
 
 
 rho = 0.01
 test_errors = []
 
-alpha_TESTS = np.linspace(alpha-1, alpha+1, 21)
+alpha_TESTS = np.logspace(np.log10(0.1), np.log10(1000), 21)
 
 for i in range(numavg):
     runs = []
     #vals_simulation.append(simulation_Gamma_error(d, tau, alpha, kappa, rho, Ctr, Ctest, np.zeros(d)))
-    Gamma = final_gamma(d, tau, alpha, kappa, rho, Ctr, lam=0.000001)
+    Gamma = final_gamma(d, tau, alpha, kappa, rho, Ctr, lam=0.0001)
     for alpha_TEST in alpha_TESTS:
         Ctest = Ctr
         runs.append(trace_formula_gamma(d, rho, int(alpha_TEST*d), np.zeros(d), Ctest, Gamma))

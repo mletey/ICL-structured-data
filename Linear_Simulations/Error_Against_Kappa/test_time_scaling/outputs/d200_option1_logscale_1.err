@@ -1,0 +1,2 @@
+/var/slurmd/spool/slurmd/job24263858/slurm_script: line 20: 1015222 Killed                  python run.py $newdir 200 2 4 5 $SLURM_ARRAY_TASK_ID 0
+slurmstepd: error: Detected 1 oom_kill event in StepId=24263858.batch. Some of the step tasks have been OOM Killed.

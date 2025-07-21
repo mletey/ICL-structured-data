@@ -9,7 +9,7 @@ alpha = float(input("alpha: "))
 tau = float(input("tau: "))
 figurename = input("figurename: ")
 
-numavg = 20
+numavg = 100
 
 kappas = [0.2, 0.5, 1, 2, 10]
 rho = 0.01
@@ -70,19 +70,21 @@ for plotting_index, key in enumerate(keys):
             axes[plotting_index].scatter(alignment_spikes, theory_spikes, marker='d', s=150, color='grey', label = 'Test on spiked signal')
             axes[plotting_index].scatter(alignment_match, theory_match, marker='*', s=500, color=same_color, label = 'Test on pretrain')
         axes[plotting_index].scatter(alignment_spikes, theory_spikes, marker='d', s=150, color=color_cycle[i+1],zorder=i+2)
+        axes[plotting_index].plot(alignment_spikes, theory_spikes, color=color_cycle[i+1], alpha=0.5, label =fr"$\kappa = $ {kappa}",zorder=1)
         # for x, y, label in zip(alignment_spikes, theory_spikes, signals):
         #     axes[plotting_index].text(x, y + 0.02, f'{(label+1):.0f}', color=color_cycle[i+1], fontsize=9, ha='center')
         axes[plotting_index].scatter(alignment_powers, theory_powers, marker='o', s=150, color=color_cycle[i+1],zorder=i+2)
+        axes[plotting_index].plot(alignment_powers, theory_powers, color=color_cycle[i+1], alpha=0.5)
         # for x, y, label in zip(alignment_powers, theory_powers, test_powers):
         #     axes[plotting_index].text(x, y + 0.02, f'{(label-train_power):.1f}', color=color_cycle[i+1], fontsize=9, ha='center')
         axes[plotting_index].scatter(alignment_match, theory_match, marker='*', s=500, color=same_color,zorder=i+10)
     
-        concatenated_x = alignment_spikes + alignment_powers + [alignment_match]
-        concatenated_y = list(theory_spikes) + list(theory_powers) + [theory_match]
-        zipped = list(zip(concatenated_x, concatenated_y))
-        sorted_pairs = sorted(zipped, key=lambda pair: pair[0])
-        sorted_X, sorted_Y = zip(*sorted_pairs)
-        axes[plotting_index].plot(sorted_X,sorted_Y,color = color_cycle[i+1], alpha = 0.5, label =fr"$\kappa = $ {kappa}",zorder=1)
+        # concatenated_x = alignment_spikes + alignment_powers + [alignment_match]
+        # concatenated_y = list(theory_spikes) + list(theory_powers) + [theory_match]
+        # zipped = list(zip(concatenated_x, concatenated_y))
+        # sorted_pairs = sorted(zipped, key=lambda pair: pair[0])
+        # sorted_X, sorted_Y = zip(*sorted_pairs)
+        # axes[plotting_index].plot(sorted_X,sorted_Y,color = color_cycle[i+1], alpha = 0.5, label =fr"$\kappa = $ {kappa}",zorder=1)
 
     axes[plotting_index].spines['top'].set_color('lightgray')
     axes[plotting_index].spines['right'].set_color('lightgray')
